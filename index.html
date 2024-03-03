@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Palindrome Checker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="input-box">
+      <h1>Is it A Palindrome?</h1>
+      <input class="palindrome-input" type="text" id="text-input" value="" />
+      <button id="check-btn" on>Palindromo?</button>
+      <p id="risultato"></p>
+
+      <div class="spiegazione">
+        <br /><br /><br />
+        <h1 id="titolo-spiegazione">Cosa significa Paliondromo?</h1>
+        <p id="paragrafoSpiegazione">
+          In italiano il termine palindromo è utilizzato sia come aggettivo che
+          come sostantivo maschile; deriva dal greco palindrómos (che corre
+          all’indietro); può avere diversi significati, in quello più ricorrente
+          è una sequenza di lettere o di sillabe che, letta in senso inverso (da
+          sinistra verso destra e da destra verso sinistra) rimane invariata
+          (per esempio, osso). Nell’ambito dell’enigmistica con palindromo si fa
+          riferimento a un gioco (noto anche come bifronte) in cui una parola,
+          letta in senso inverso può rimanere o invariata (vedasi l’esempio
+          precedente) oppure dar luogo a una sequenza diversa, ma di senso
+          compiuto (è per esempio il caso di acetone che, letto al contrario, dà
+          enoteca).
+        </p>
+      </div>
+    </div>
+
+    <br /><br />
+
+    <script>
+      let button = document.querySelector("#check-btn");
+      let inputText = document.querySelector("#text-input");
+      let inputValue;
+      let Paragrafo = document.querySelector("#risultato");
+
+      let clickinput = inputText.addEventListener("input", (e) => {
+        inputValue = e.target.value;
+      });
+
+      let clickBottone = button.addEventListener("click", (e) => {
+        if (inputValue == "" || inputValue == undefined) {
+          button.onclick = Paragrafo.textContent =
+            "Errore: nessun carattere inserito";
+        } else {
+          console.log(inputValue);
+          Palindrome();
+        }
+      });
+
+      let Palindrome = function Palindrome() {
+        let ValueArr = inputValue.split("");
+        let ArrayContrario = [];
+        for (let i = 0; i < ValueArr.length; i++) {
+          ArrayContrario[i] = ValueArr[ValueArr.length - i - 1];
+          console.log(ArrayContrario);
+        }
+        let stringaContrario = ArrayContrario.toString();
+        console.log(stringaContrario);
+        let stringaValue = ValueArr.toString();
+        console.log(stringaValue);
+        if (stringaContrario === stringaValue) {
+          Paragrafo.textContent = "la parola è palindroma";
+        } else {
+          Paragrafo.textContent = "la parola non è palindroma";
+        }
+      };
+
+      let spiegazione = document.querySelector(".spiegazione");
+
+      spiegazione.addEventListener("click", () => {
+        spiegazione.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>
